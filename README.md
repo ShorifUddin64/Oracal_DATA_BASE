@@ -149,6 +149,22 @@ SELECT ID, NAME, BONUS + 100 AS NEW_BONUS FROM DEMO;                        -- A
 SELECT ID, NAME || ' is ' || STATUS AS EMP_DETAILS FROM DEMO;               -- Combine 2 columns
 SELECT ID, NAME AS EMPLOYEE_NAME FROM DEMO;                                 -- Change column display name
 SELECT * FROM DEMO WHERE VAT IS NULL;                                       -- Find empty VAT rows
+
+
+-- Secure PL/SQL Block
+DECLARE
+    v_emp_name Employees.EmpName%TYPE;
+BEGIN
+    SELECT EmpName INTO v_emp_name 
+    FROM Employees 
+    WHERE EmpID = 101;
+    
+    DBMS_OUTPUT.PUT_LINE('Employee Name: ' || v_emp_name);
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        DBMS_OUTPUT.PUT_LINE('No record found safely!');
+END;
+/
 SELECT * FROM DEMO WHERE JOIN_DATE IS NOT NULL;                             -- Find non-empty dates
 SELECT * FROM DEMO WHERE NAME LIKE 'S%';                                    -- Name starts with S
 SELECT * FROM DEMO WHERE NAME LIKE '_a%';                                   -- Name's 2nd letter is a
