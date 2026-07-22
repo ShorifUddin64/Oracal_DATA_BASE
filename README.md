@@ -121,6 +121,11 @@ INSERT INTO DEMO VALUES (7, 'Zayn', 40000, 1200, 0, TO_DATE('2024-11-05', 'YYYY-
 INSERT INTO DEMO VALUES (8, 'Anna', 55000, 2000, 100, SYSDATE, 'UI/UX Designer with creative concepts.', 'Active');
 INSERT INTO DEMO VALUES (9, 'Luke', 32000, 1000, 50, SYSDATE, 'Support Lead managing customer queries.', 'Active');
 INSERT INTO DEMO VALUES (10, 'Sara', 72000, 4000, 300, TO_DATE('2025-05-20', 'YYYY-MM-DD'), 'Marketing executive.', 'Active');
+---
+<h4>
+Rendome
+</h4>
+---
 
 
 -- =========================================================
