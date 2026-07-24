@@ -26,9 +26,9 @@
 > ```
 
 ---
-ER_Diagram Creat: Graphviz Online(CORD)
+ER_Diagram Creat: https://edotor.net/ (CORD)
 
-ER_Diagram:
+ER_Diagram: https://app.diagrams.net/ (Shape)
 ### 🗄️ Database Environment Overview
 
 ```yaml
