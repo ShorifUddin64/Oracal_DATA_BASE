@@ -162,4 +162,40 @@ SELECT * FROM DEMO WHERE VAT IS NULL;                                       -- F
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+select * from emp;
+select avg(sal)*110 as Avgsalary from emp;
+select avg(SELLING_PRICE_$)*110 as "AvgsSELLING_PRICE_BDT" from VEHICLE;
+select * from vehicle where regdate between '01-may-21' and '20-may-2021';
+select * from emp where hiredate between '01-may-2081' and '20-may-2081';
+select * from emp where hiredate between '01-may-81' and '2020-may-2081';
+select * from emp where hiredate between '01-may-81' and '20-may-2081';
+select * from emp where hiredate between '01-may-81' and '20-may-81';
+SELECT * FROM emp WHERE hiredate BETWEEN '01-MAY-2081' AND '20-MAY-2081';
+SELECT * FROM emp 
+WHERE hiredate BETWEEN TO_DATE('01-05-2081', 'DD-MM-YYYY') 
+                   AND TO_DATE('20-05-2081', 'DD-MM-YYYY');
 
+select * from emp where hiredate between '01-may-1981' and '20-may-1981';
+
+SELECT TYPE, SUM(SELLING_PRICE_$) AS TOTAL_SELLING_PRICE
+FROM VEHICLE
+WHERE REGDATE IS NOT NULL
+GROUP BY TYPE
+HAVING SUM(SELLING_PRICE_$) > 987999;
+SELECT VEHICLE_NO, 
+       TYPE,
+       SELLING_PRICE_$ * DECODE(TYPE, 
+                                'MICROBUS', 0.80, 
+                                'TRUCK', 0.90, 
+                                'PRIVATE CAR', 0.85, 
+                                1) AS DISCOUNTED_PRICE
+FROM VEHICLE;
+
+SELECT *
+FROM VEHICLE
+WHERE UPPER(TYPE) LIKE '%BUS';
+SELECT VEHICLE_NO,
+       NVL(TO_CHAR(REGDATE, 'YYYY-MM-DD'), 'NULL') AS REGDATE,
+       TYPE
+FROM VEHICLE
+WHERE VEHICLE_NO = 112;
