@@ -199,3 +199,13 @@ SELECT VEHICLE_NO,
        TYPE
 FROM VEHICLE
 WHERE VEHICLE_NO = 112;
+SELECT CONCAT(ename, job),
+       INSTR(ename, 'p'),
+       SUBSTR(job, 2, 3),
+       TRIM('p' FROM job),
+       LENGTH(job),
+       LOWER(hiredate),
+       UPPER(ename),
+       INITCAP(ename),
+       REPLACE(job, 't', 'p')
+FROM emp;
