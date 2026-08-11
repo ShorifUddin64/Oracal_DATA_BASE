@@ -165,6 +165,15 @@ Alter table student add constraint ukk unique(id);
 Alter table student modify id default(0);
 Alter table student modify id not null;
 Alter table student add constraint ckk check(id in(1,2,3));
+drop table deptk;
+CREATE TABLE DEPTK ( DEPTID NUMBER(3) PRIMARY KEY, DNAME VARCHAR2(12));
+INSERT INTO DEPTK (DEPTID,DNAME) VALUES (1,'P');
+SELECT * FROM DEPTK;
+DROP TABLE STUDENT;
+CREATE TABLE STUDENT ( ID NUMBER(11) CONSTRAINT PK PRIMARY KEY, NAME VARCHAR2(32),CGPA FLOAT, DEPTID NUMBER(3), CONSTRAINT FK FOREIGN KEY(DEPTID) REFERENCES DEPTK(DEPTID));
+INSERT INTO STUDENT( ID,NAME,CGPA) VALUES(2,'S',2.5);
+INSERT INTO STUDENT( ID,NAME,CGPA,DEPTID) VALUES(2,'S',2.5,1);
+SELECT * FROM STUDENT;
   
 
 -- =========================================================
