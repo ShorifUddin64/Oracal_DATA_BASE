@@ -56,7 +56,25 @@ CREATE TABLE DEMO (
     STATUS VARCHAR2(10),              -- 8. Current employment status (Active/Inactive)
     PRIMARY KEY (ID)                  -- 9. Declares ID as the main unique key
 );
+-- =========================================================
+-- STEP 3: FIGHER CHACK
+-- =========================================================
+DESC <TABLE NAME>;
+DESC  DEPARTMENT;
 
+-- =========================================================
+-- STEP 3: VIEWING COLUMN CONSTRAINT NEW NAME
+-- =========================================================
+SELECT constraint_name, column_name 
+FROM user_cons_columns 
+WHERE table_name = '<table_name>';
+
+-- =========================================================
+-- STEP 3: VIEWING CHECK CONDITION
+-- =========================================================
+SELECT constraint_name, search_condition 
+FROM user_constraints 
+WHERE table_name = '<table_name>';
 
 -- =========================================================
 -- STEP 3: DIRECT VALUES INSERTION & SPECIFIC RECORDS
