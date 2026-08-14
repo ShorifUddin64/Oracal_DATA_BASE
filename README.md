@@ -36,7 +36,7 @@ Database Engine  : Oracle Database (19c / Enterprise Edition)
 Query Languages  : SQL, PL/SQL (Procedures, Functions, Triggers)
 Tools & Client   : Oracle SQL Developer, SQL*Plus, Command Line Interface
 Security Mindset : Input Sanitization, Role-Based Access Control (RBAC), Prepared Statements
-
+Key Word         : Foreign key,
 -- =========================================================
 ************************************************************
 -- SELECT & FILTERING PRACTICE COMMANDS
