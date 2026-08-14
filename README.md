@@ -38,8 +38,9 @@ Tools & Client   : Oracle SQL Developer, SQL*Plus, Command Line Interface
 Security Mindset : Input Sanitization, Role-Based Access Control (RBAC), Prepared Statements
 ```
 
-<font color="red">Key Word : Foreign key, References, constraint,,values,unique,Varcher</font>
-
+### Key Word : 
+Foreign key, References, constraint,,values,unique,Varcher</font>
+```yaml
 -- =========================================================
 ************************************************************
 -- SELECT & FILTERING PRACTICE COMMANDS
