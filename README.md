@@ -39,7 +39,7 @@ Security Mindset : Input Sanitization, Role-Based Access Control (RBAC), Prepare
 ```
 
 ### Key Word : 
-Foreign key, References, constraint,,values,unique,Varcher</font>
+- `Foreign key,`: References, constraint,,values,unique,Varcher</font>
 ```yaml
 -- =========================================================
 ************************************************************
