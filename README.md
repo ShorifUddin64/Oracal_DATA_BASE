@@ -37,7 +37,9 @@ Query Languages  : SQL, PL/SQL (Procedures, Functions, Triggers)
 Tools & Client   : Oracle SQL Developer, SQL*Plus, Command Line Interface
 Security Mindset : Input Sanitization, Role-Based Access Control (RBAC), Prepared Statements
 ```
+```diff
 Key Word         : Foreign key, References, constraint,,values,unique,Varcher
+```
 -- =========================================================
 ************************************************************
 -- SELECT & FILTERING PRACTICE COMMANDS
