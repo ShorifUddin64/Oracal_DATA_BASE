@@ -41,7 +41,7 @@ Security Mindset : Input Sanitization, Role-Based Access Control (RBAC), Prepare
 ### Key Word : 
 Foreign key, References, constraint,,values,unique,Varcher</font>
 ```yaml
--- =========================================================
+=========================================================
 ************************************************************
 ```
 ```diff
@@ -49,7 +49,7 @@ Foreign key, References, constraint,,values,unique,Varcher</font>
 ```
 ```yaml
 ************************************************************
--- =========================================================
+=========================================================
 
 SELECT * FROM DEMO;
 SELECT NAME, TO_CHAR(JOIN_DATE, 'YYYY-MM-DD HH24:MI:SS') AS FULL_DATE_TIME FROM DEMO WHERE NAME = 'Sajid Khan';
