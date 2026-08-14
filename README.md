@@ -36,8 +36,94 @@ Database Engine  : Oracle Database (19c / Enterprise Edition)
 Query Languages  : SQL, PL/SQL (Procedures, Functions, Triggers)
 Tools & Client   : Oracle SQL Developer, SQL*Plus, Command Line Interface
 Security Mindset : Input Sanitization, Role-Based Access Control (RBAC), Prepared Statements
+
 -- =========================================================
+************************************************************
+-- SELECT & FILTERING PRACTICE COMMANDS
+************************************************************
+-- =========================================================
+
+SELECT * FROM DEMO;
+SELECT NAME, TO_CHAR(JOIN_DATE, 'YYYY-MM-DD HH24:MI:SS') AS FULL_DATE_TIME FROM DEMO WHERE NAME = 'Sajid Khan';
+SELECT NAME, TO_CHAR(JOIN_DATE, 'YYYY-MM-DD HH24:MI:SS') AS FULL_DATE_TIME FROM DEMO WHERE NAME = 'Anika Rahman';
+
+SELECT * FROM DEMO ORDER BY ID;
+SELECT * FROM DEMO WHERE SALARY > 40000 AND STATUS = 'Active';               -- Both conditions true
+SELECT * FROM DEMO WHERE STATUS = 'Inactive' OR BONUS = 0;                  -- Either condition true
+SELECT * FROM DEMO WHERE SALARY BETWEEN 40000 AND 70000;                     -- Salary in range
+SELECT * FROM DEMO WHERE ID IN (5, 8, 10);                                  -- Match specific IDs
+SELECT ID, UPPER(NAME) FROM DEMO;                                           -- Convert name to capital
+SELECT ID, LOWER(NAME) FROM DEMO;                                           -- Convert name to small
+SELECT ID, NAME, (SALARY + BONUS) AS TOTAL_INCOME FROM DEMO;                -- Calculate total income
+SELECT NAME, LENGTH(NAME) AS LETTER_COUNT FROM DEMO;                        -- Count letters in name
+SELECT ID, SUBSTR(NAME, 1, 3) AS SHORT_NAME FROM DEMO;                      -- Cut first 3 letters
+SELECT * FROM DEMO ORDER BY STATUS ASC, ID DESC;                            -- Double sort structure
+SELECT * FROM DEMO WHERE NAME IN (SELECT NAME FROM DEMO GROUP BY NAME HAVING COUNT(NAME) > 1) ORDER BY NAME;
+SELECT * FROM DEMO ORDER BY ID ASC;                                         -- Sort small to big
+SELECT * FROM DEMO ORDER BY ID DESC;                                        -- Sort big to small
+SELECT ID, NAME, BONUS + 100 AS NEW_BONUS FROM DEMO;                        -- Add 100 to bonus
+SELECT ID, NAME || ' is ' || STATUS AS EMP_DETAILS FROM DEMO;               -- Combine 2 columns
+SELECT ID, NAME AS EMPLOYEE_NAME FROM DEMO;                                 -- Change column display name
+SELECT * FROM DEMO WHERE VAT IS NULL;                                       -- Find empty VAT rows
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                                                      RENDOME DATA MANAGMENT SYSTEM
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+select * from emp;
+select avg(sal)*110 as Avgsalary from emp;
+select avg(SELLING_PRICE_$)*110 as "AvgsSELLING_PRICE_BDT" from VEHICLE;
+select * from vehicle where regdate between '01-may-21' and '20-may-2021';
+select * from emp where hiredate between '01-may-2081' and '20-may-2081';
+select * from emp where hiredate between '01-may-81' and '2020-may-2081';
+select * from emp where hiredate between '01-may-81' and '20-may-2081';
+select * from emp where hiredate between '01-may-81' and '20-may-81';
+SELECT * FROM emp WHERE hiredate BETWEEN '01-MAY-2081' AND '20-MAY-2081';
+SELECT * FROM emp 
+WHERE hiredate BETWEEN TO_DATE('01-05-2081', 'DD-MM-YYYY') 
+                   AND TO_DATE('20-05-2081', 'DD-MM-YYYY');
+
+select * from emp where hiredate between '01-may-1981' and '20-may-1981';
+
+SELECT TYPE, SUM(SELLING_PRICE_$) AS TOTAL_SELLING_PRICE
+FROM VEHICLE
+WHERE REGDATE IS NOT NULL
+GROUP BY TYPE
+HAVING SUM(SELLING_PRICE_$) > 987999;
+SELECT VEHICLE_NO, 
+       TYPE,
+       SELLING_PRICE_$ * DECODE(TYPE, 
+                                'MICROBUS', 0.80, 
+                                'TRUCK', 0.90, 
+                                'PRIVATE CAR', 0.85, 
+                                1) AS DISCOUNTED_PRICE
+FROM VEHICLE;
+
+SELECT *
+FROM VEHICLE
+WHERE UPPER(TYPE) LIKE '%BUS';
+SELECT VEHICLE_NO,
+       NVL(TO_CHAR(REGDATE, 'YYYY-MM-DD'), 'NULL') AS REGDATE,
+       TYPE
+FROM VEHICLE
+WHERE VEHICLE_NO = 112;
+SELECT CONCAT(ename, job),
+       INSTR(ename, 'p'),
+       SUBSTR(job, 2, 3),
+       TRIM('p' FROM job),
+       LENGTH(job),
+       LOWER(hiredate),
+       UPPER(ename),
+       INITCAP(ename),
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-- =========================================================
+************************************************************
 -- STEP 1: DROP OLD TABLE (RESET ENVIRONMENT)
+************************************************************
 -- =========================================================
 DROP TABLE DEMO;
 
@@ -228,82 +314,6 @@ SELECT constraint_name, column_name
 FROM user_cons_columns 
 WHERE table_name = 'COURSE';
 
--- =========================================================
--- SELECT & FILTERING PRACTICE COMMANDS
--- =========================================================
 
-SELECT * FROM DEMO;
-SELECT NAME, TO_CHAR(JOIN_DATE, 'YYYY-MM-DD HH24:MI:SS') AS FULL_DATE_TIME FROM DEMO WHERE NAME = 'Sajid Khan';
-SELECT NAME, TO_CHAR(JOIN_DATE, 'YYYY-MM-DD HH24:MI:SS') AS FULL_DATE_TIME FROM DEMO WHERE NAME = 'Anika Rahman';
-
-SELECT * FROM DEMO ORDER BY ID;
-SELECT * FROM DEMO WHERE SALARY > 40000 AND STATUS = 'Active';               -- Both conditions true
-SELECT * FROM DEMO WHERE STATUS = 'Inactive' OR BONUS = 0;                  -- Either condition true
-SELECT * FROM DEMO WHERE SALARY BETWEEN 40000 AND 70000;                     -- Salary in range
-SELECT * FROM DEMO WHERE ID IN (5, 8, 10);                                  -- Match specific IDs
-SELECT ID, UPPER(NAME) FROM DEMO;                                           -- Convert name to capital
-SELECT ID, LOWER(NAME) FROM DEMO;                                           -- Convert name to small
-SELECT ID, NAME, (SALARY + BONUS) AS TOTAL_INCOME FROM DEMO;                -- Calculate total income
-SELECT NAME, LENGTH(NAME) AS LETTER_COUNT FROM DEMO;                        -- Count letters in name
-SELECT ID, SUBSTR(NAME, 1, 3) AS SHORT_NAME FROM DEMO;                      -- Cut first 3 letters
-SELECT * FROM DEMO ORDER BY STATUS ASC, ID DESC;                            -- Double sort structure
-SELECT * FROM DEMO WHERE NAME IN (SELECT NAME FROM DEMO GROUP BY NAME HAVING COUNT(NAME) > 1) ORDER BY NAME;
-SELECT * FROM DEMO ORDER BY ID ASC;                                         -- Sort small to big
-SELECT * FROM DEMO ORDER BY ID DESC;                                        -- Sort big to small
-SELECT ID, NAME, BONUS + 100 AS NEW_BONUS FROM DEMO;                        -- Add 100 to bonus
-SELECT ID, NAME || ' is ' || STATUS AS EMP_DETAILS FROM DEMO;               -- Combine 2 columns
-SELECT ID, NAME AS EMPLOYEE_NAME FROM DEMO;                                 -- Change column display name
-SELECT * FROM DEMO WHERE VAT IS NULL;                                       -- Find empty VAT rows
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-                                                      RENDOME DATA MANAGMENT SYSTEM
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-select * from emp;
-select avg(sal)*110 as Avgsalary from emp;
-select avg(SELLING_PRICE_$)*110 as "AvgsSELLING_PRICE_BDT" from VEHICLE;
-select * from vehicle where regdate between '01-may-21' and '20-may-2021';
-select * from emp where hiredate between '01-may-2081' and '20-may-2081';
-select * from emp where hiredate between '01-may-81' and '2020-may-2081';
-select * from emp where hiredate between '01-may-81' and '20-may-2081';
-select * from emp where hiredate between '01-may-81' and '20-may-81';
-SELECT * FROM emp WHERE hiredate BETWEEN '01-MAY-2081' AND '20-MAY-2081';
-SELECT * FROM emp 
-WHERE hiredate BETWEEN TO_DATE('01-05-2081', 'DD-MM-YYYY') 
-                   AND TO_DATE('20-05-2081', 'DD-MM-YYYY');
-
-select * from emp where hiredate between '01-may-1981' and '20-may-1981';
-
-SELECT TYPE, SUM(SELLING_PRICE_$) AS TOTAL_SELLING_PRICE
-FROM VEHICLE
-WHERE REGDATE IS NOT NULL
-GROUP BY TYPE
-HAVING SUM(SELLING_PRICE_$) > 987999;
-SELECT VEHICLE_NO, 
-       TYPE,
-       SELLING_PRICE_$ * DECODE(TYPE, 
-                                'MICROBUS', 0.80, 
-                                'TRUCK', 0.90, 
-                                'PRIVATE CAR', 0.85, 
-                                1) AS DISCOUNTED_PRICE
-FROM VEHICLE;
-
-SELECT *
-FROM VEHICLE
-WHERE UPPER(TYPE) LIKE '%BUS';
-SELECT VEHICLE_NO,
-       NVL(TO_CHAR(REGDATE, 'YYYY-MM-DD'), 'NULL') AS REGDATE,
-       TYPE
-FROM VEHICLE
-WHERE VEHICLE_NO = 112;
-SELECT CONCAT(ename, job),
-       INSTR(ename, 'p'),
-       SUBSTR(job, 2, 3),
-       TRIM('p' FROM job),
-       LENGTH(job),
-       LOWER(hiredate),
-       UPPER(ename),
-       INITCAP(ename),
        REPLACE(job, 't', 'p')
 FROM emp;
