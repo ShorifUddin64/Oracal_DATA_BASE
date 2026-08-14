@@ -39,7 +39,7 @@ Security Mindset : Input Sanitization, Role-Based Access Control (RBAC), Prepare
 ```
 ```diff
 
-Key Word         : Foreign key, References, constraint,,values,unique,Varcher
+- Key Word         : Foreign key, References, constraint,,values,unique,Varcher
 ```
 -- =========================================================
 ************************************************************
