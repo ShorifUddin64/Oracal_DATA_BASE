@@ -47,6 +47,7 @@ Foreign key, References, constraint,,values,unique,Varcher</font>
 ```diff
 -SELECT & FILTERING PRACTICE COMMANDS
 ```
+```yaml
 ************************************************************
 -- =========================================================
 
