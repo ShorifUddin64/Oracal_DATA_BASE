@@ -321,3 +321,37 @@ WHERE table_name = 'COURSE';
 
        REPLACE(job, 't', 'p')
 FROM emp;
+drop table department;
+drop table course;
+create table  department(
+deptid  number(3) primary key,
+dept_name varchar(6) check(dept_name in('CSE','EEE','BBA','Eng','Ach')),
+budget number(6) default(0));
+
+create table course(
+crs_id number(4) primary key,
+crs_name varchar2(20) not null,
+dept_id number(3), foreign key(dept_id) references department(deptid));
+
+drop table student;
+create table student(
+s_id number,
+s_name varchar2(20),
+phone number,
+address varchar2(20),
+email varchar2(30),
+credit_completed number(3),
+course_completed number(2),
+cgpa number,
+deptno number(5),
+gender varchar2(6));
+
+desc student;
+alter table student add constraint pk primary key(s_id);
+alter table student modify s_name varchar2(20) not null;
+alter table student add constraint e unique(email);
+alter table student add constraint fk foreign key(deptno) references department(deptid);
+alter table student add constraint g check(gender in('M','F'));
+select constraint_name,column_name from user_cons_columns where table_name ='STUDENT';
+alter table student disable constraint SYS_C004607;
+alter table student enable constraint SYS_C004607;
